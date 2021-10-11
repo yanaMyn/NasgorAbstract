@@ -1,0 +1,6 @@
+framework module NasgorAbstract {
+    umbrella header "NasgorAbstract.h"
+
+    export *
+    module * { export * }
+}
