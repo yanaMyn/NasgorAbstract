@@ -6,9 +6,9 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class NasgorAbstractLanguage, NasgorAbstractLanguageBahasa, NasgorAbstractLanguageEnglish, NasgorAbstractStatusFavorite, NasgorAbstractStatusFavoriteEmpty, NasgorAbstractStatusFavoriteError, NasgorAbstractStatusFavoriteInit, NasgorAbstractStatusFavoriteMaintenance, NasgorAbstractStatusFavoriteOffline, NasgorAbstractFavorite, NasgorAbstractStatusFavoriteSuccess, NasgorAbstractKotlinThrowable, NasgorAbstractKotlinArray<T>, NasgorAbstractKotlinException, NasgorAbstractKotlinRuntimeException, NasgorAbstractKotlinIllegalStateException;
+@class NasgorAbstractLanguage, NasgorAbstractLanguageBahasa, NasgorAbstractLanguageEnglish, NasgorAbstractStatusFavorite, NasgorAbstractStatusFavoriteEmpty, NasgorAbstractStatusFavoriteError, NasgorAbstractStatusFavoriteInit, NasgorAbstractStatusFavoriteMaintenance, NasgorAbstractStatusFavoriteOffline, NasgorAbstractStatusFavoriteSuccess, NasgorAbstractKotlinThrowable, NasgorAbstractKotlinArray<T>, NasgorAbstractKotlinException, NasgorAbstractKotlinRuntimeException, NasgorAbstractKotlinIllegalStateException;
 
-@protocol NasgorAbstractKotlinIterator;
+@protocol NasgorAbstractFavoriteAbstract, NasgorAbstractKotlinIterator;
 
 NS_ASSUME_NONNULL_BEGIN
 #pragma clang diagnostic push
@@ -144,19 +144,19 @@ __attribute__((swift_name("KotlinBoolean")))
 + (instancetype)numberWithBool:(BOOL)value;
 @end;
 
-__attribute__((swift_name("Favorite")))
-@interface NasgorAbstractFavorite : NasgorAbstractBase
-- (instancetype)initWithId:(int32_t)id bankCode:(NSString *)bankCode bankName:(NSString *)bankName menuId:(NSString *)menuId menuName:(NSString *)menuName menuNameEN:(NSString *)menuNameEN categoryId:(int32_t)categoryId imageUrl:(NSString *)imageUrl description:(NSString *)description customerNumber:(NSString *)customerNumber __attribute__((swift_name("init(id:bankCode:bankName:menuId:menuName:menuNameEN:categoryId:imageUrl:description:customerNumber:)"))) __attribute__((objc_designated_initializer));
-@property NSString *bankCode __attribute__((swift_name("bankCode")));
-@property NSString *bankName __attribute__((swift_name("bankName")));
-@property int32_t categoryId __attribute__((swift_name("categoryId")));
-@property NSString *customerNumber __attribute__((swift_name("customerNumber")));
-@property (setter=setDescription:) NSString *description_ __attribute__((swift_name("description_")));
-@property int32_t id __attribute__((swift_name("id")));
-@property NSString *imageUrl __attribute__((swift_name("imageUrl")));
-@property NSString *menuId __attribute__((swift_name("menuId")));
-@property NSString *menuName __attribute__((swift_name("menuName")));
-@property NSString *menuNameEN __attribute__((swift_name("menuNameEN")));
+__attribute__((swift_name("FavoriteAbstract")))
+@protocol NasgorAbstractFavoriteAbstract
+@required
+@property (readonly) NSString *bankCode __attribute__((swift_name("bankCode")));
+@property (readonly) NSString *bankName __attribute__((swift_name("bankName")));
+@property (readonly) int32_t categoryId __attribute__((swift_name("categoryId")));
+@property (readonly) NSString *customerNumber __attribute__((swift_name("customerNumber")));
+@property (readonly) NSString *description_ __attribute__((swift_name("description_")));
+@property (readonly) int32_t id __attribute__((swift_name("id")));
+@property (readonly) NSString *imageUrl __attribute__((swift_name("imageUrl")));
+@property (readonly) NSString *menuId __attribute__((swift_name("menuId")));
+@property (readonly) NSString *menuName __attribute__((swift_name("menuName")));
+@property (readonly) NSString *menuNameEN __attribute__((swift_name("menuNameEN")));
 @end;
 
 __attribute__((swift_name("Language")))
@@ -251,15 +251,15 @@ __attribute__((swift_name("StatusFavorite.Offline")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StatusFavorite.Success")))
 @interface NasgorAbstractStatusFavoriteSuccess : NasgorAbstractStatusFavorite
-- (instancetype)initWithData:(NSArray<NasgorAbstractFavorite *> *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithData:(NSArray<id<NasgorAbstractFavoriteAbstract>> *)data __attribute__((swift_name("init(data:)"))) __attribute__((objc_designated_initializer));
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 + (instancetype)new __attribute__((unavailable));
-- (NSArray<NasgorAbstractFavorite *> *)component1 __attribute__((swift_name("component1()")));
-- (NasgorAbstractStatusFavoriteSuccess *)doCopyData:(NSArray<NasgorAbstractFavorite *> *)data __attribute__((swift_name("doCopy(data:)")));
+- (NSArray<id<NasgorAbstractFavoriteAbstract>> *)component1 __attribute__((swift_name("component1()")));
+- (NasgorAbstractStatusFavoriteSuccess *)doCopyData:(NSArray<id<NasgorAbstractFavoriteAbstract>> *)data __attribute__((swift_name("doCopy(data:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
-@property (readonly) NSArray<NasgorAbstractFavorite *> *data __attribute__((swift_name("data")));
+@property (readonly) NSArray<id<NasgorAbstractFavoriteAbstract>> *data __attribute__((swift_name("data")));
 @end;
 
 __attribute__((swift_name("KMPFavoriteRemoteDataSource")))
